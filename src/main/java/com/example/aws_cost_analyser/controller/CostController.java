@@ -1,5 +1,6 @@
 package com.example.aws_cost_analyser.controller;
 
+import com.example.aws_cost_analyser.entity.CombinedCostResponse;
 import com.example.aws_cost_analyser.entity.CostResponse;
 import com.example.aws_cost_analyser.service.CostService;
 import jakarta.validation.constraints.Pattern;
@@ -41,4 +42,13 @@ public class CostController {
 
         return ResponseEntity.ok(response);
     }
+
+    @GetMapping("/combined")
+    public CombinedCostResponse getCost(
+            @RequestParam String accountId,
+            @RequestParam String startDate,
+            @RequestParam String endDate) {
+        return costService.getCombinedCost(accountId, startDate, endDate);
+    }
+
 }
